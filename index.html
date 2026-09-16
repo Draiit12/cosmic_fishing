@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmic Fishing</title>
+  <link rel="stylesheet" href="./CSS/style.css" />
+  <script src="./JS/embedded-assets.js"></script>
+  <script src="./JS/wind-assets.js"></script>
+  <script src="./JS/ship-meta.js"></script>
+  <script src="./JS/character-meta.js"></script>
+  <script src="./JS/rod-cast-assets.js"></script>
+  <script src="./JS/rod-cast-meta.js"></script>
+  <script src="./JS/fishing-assets.js"></script>
+  <script src="./JS/fishing-system.js"></script>
+  <script src="./JS/cloud-templates.js"></script>
+  <script src="./JS/cloud-system.js"></script>
+  <script src="./JS/wind-system.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <canvas id="shipFxCanvas" aria-hidden="true"></canvas>
+  <div id="debugPanel"></div>
+  <div id="runtimeError"></div>
+  <div id="hud">
+    <div id="compassRoot">
+      <div id="compassStrip"></div>
+      <div id="compassCenterLine"></div>
+      <div id="compassCenterLabel">N</div>
+    </div>
+    <div id="audioHint">LEFT CLICK MOVE · RIGHT CLICK CAST / HOOK · HOLD IN MINIGAME</div>
+  </div>
+  <audio id="bgm" src="./MUSIC/background.mp3" loop preload="metadata"></audio>
+  <audio id="motorSfx" src="./MUSIC/motor.mp3" loop preload="metadata"></audio>
+  <audio id="rodCastSfx" src="./MUSIC/rod_cast.mp3" preload="auto"></audio>
+  <audio id="reelSfx" src="./MUSIC/reel_loop.mp3" loop preload="auto"></audio>
+  <audio id="fishBiteSfx" src="./MUSIC/fish_bite_cosmic.ogg" preload="auto"></audio>
+  <audio id="fishHookSfx" src="./MUSIC/fish_hook_cosmic.ogg" preload="auto"></audio>
+  <audio id="fishEscapeSfx" src="./MUSIC/fish_escape_cosmic.ogg" preload="auto"></audio>
+  <audio id="fishCompleteSfx" src="./MUSIC/fish_complete_cosmic.ogg" preload="auto"></audio>
+
+  <script src="./JS/core/runtime-config.js"></script>
+  <script src="./JS/core/asset-state.js"></script>
+  <script src="./JS/core/asset-loader.js"></script>
+  <script src="./JS/core/input-router.js"></script>
+  <script src="./JS/main.js"></script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+    import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+    window.COSMIC_MAIN({THREE,EffectComposer,RenderPass,UnrealBloomPass,ShaderPass});
+  </script>
+</body>
+</html>

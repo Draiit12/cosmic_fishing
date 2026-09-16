@@ -1,0 +1,88 @@
+@font-face {
+      font-family: 'Minecraft';
+      src: url('../FONT/Minecraft.ttf') format('truetype');
+      font-display: swap;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; width: 100%; height: 100%; overflow: hidden;
+      background: #03050b; font-family: 'Minecraft', Arial, sans-serif;
+      overscroll-behavior: none; touch-action: none; user-select: none; -webkit-user-select: none;
+    }
+    canvas { display: block; }
+    .webgl-canvas {
+      position: fixed; inset: 0; width: 100%; height: 100%;
+      z-index: 0; touch-action: none;
+    }
+    /* v9.4: reflection/wake canvas is an off-screen texture source, never a DOM overlay. */
+    #shipFxCanvas { display: none; }
+    #debugPanel {
+      display:none; position:fixed; left:12px; top:12px; z-index:9998;
+      padding:8px 10px; background:rgba(2,7,14,.82); color:#d9eeff;
+      border:1px solid rgba(130,190,255,.25); font:11px/1.45 monospace; white-space:pre;
+      pointer-events:none;
+    }
+    #hud { position: fixed; inset: 0; pointer-events: none; z-index: 10; }
+    #compassRoot {
+      position: absolute; left: 50%; top: 20px; transform: translateX(-50%);
+      width: 360px; height: 34px; overflow: hidden; pointer-events: none;
+    }
+    #compassCenterLine {
+      position: absolute; left: 50%; top: 2px; transform: translateX(-50%);
+      width: 2px; height: 16px; background: rgba(238,246,255,.95);
+      box-shadow: 0 0 8px rgba(170,210,255,.30), 0 0 18px rgba(110,170,255,.14);
+      z-index: 4;
+    }
+    #compassCenterLabel {
+      position: absolute; left: 50%; bottom: 0;
+      transform: translateX(-50%) translateY(5px);
+      color: rgba(236,244,255,.96); font-size: 14px; letter-spacing: .22em;
+      text-transform: uppercase; white-space: nowrap;
+      text-shadow: 0 0 8px rgba(150,195,255,.35), 0 0 16px rgba(90,145,255,.15);
+      z-index: 4;
+    }
+    #compassStrip { position: absolute; left: 50%; top: 0; height: 100%; will-change: transform; }
+    .compassTick { position: absolute; top: 6px; width: 1px; transform: translateX(-50%); }
+    .compassTick.major { height: 10px; background: rgba(224,236,255,.78); }
+    .compassTick.minor { height: 6px; background: rgba(196,214,245,.32); }
+    .compassLabel {
+      position: absolute; top: 17px; transform: translateX(-50%);
+      color: rgba(220,234,255,.72); font-size: 10px; letter-spacing: .18em;
+      text-transform: uppercase; white-space: nowrap;
+      text-shadow: 0 0 8px rgba(120,160,255,.14);
+    }
+    #audioHint {
+      position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
+      color: rgba(205,220,255,.56); font-size: 10px; letter-spacing: .09em;
+      opacity: 0; transition: opacity .6s ease; text-shadow: 0 0 10px rgba(120,160,255,.2);
+    }
+    #audioHint.show { opacity: 1; }
+    @media (max-width: 600px) { #compassRoot { width: 290px; } }
+
+#runtimeError {
+  display: none;
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 9999;
+  padding: 10px 12px;
+  background: rgba(20, 3, 8, .92);
+  color: #ffd9df;
+  border: 1px solid rgba(255, 120, 145, .35);
+  font: 12px/1.45 monospace;
+  white-space: pre-wrap;
+  pointer-events: none;
+}
+
+/* v9.9.2 Fishing minigame: one tiny logical 234x55 pixel canvas, integer CSS scaling only. */
+#fishingMiniGame {
+  position: fixed;
+  z-index: 40;
+  width: 234px;
+  height: 55px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  pointer-events: none;
+  transform-origin: 50% 100%;
+}
