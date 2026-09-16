@@ -24,17 +24,17 @@ function createRuntimeConfig(THREE){
     wakeContact:2, wakeCenter:3, wakeSide:2, wakeFoam:3, boatShadowSteps:6,
     fxMaxWidth:1920, fxMaxHeight:1080, reflectionStrip:3, contactStep:4, bloom:true
   } : mobileTier === 'high' ? {
-    tier:'mobile-high', dprCap:1.15, targetFps:60, oceanSegments:128, starCount:650,
+    tier:'mobile-high', dprCap:1.55, targetFps:60, oceanSegments:128, starCount:650,
     waveCounts:{small:30,medium:10,large:4}, waveHz:45, wakeMax:240, wakeSpawnDistance:.075,
     wakeContact:2, wakeCenter:3, wakeSide:2, wakeFoam:2, boatShadowSteps:4,
     fxMaxWidth:1440, fxMaxHeight:810, reflectionStrip:4, contactStep:5, bloom:true
   } : mobileTier === 'balanced' ? {
-    tier:'mobile-balanced', dprCap:1.0, targetFps:45, oceanSegments:96, starCount:480,
+    tier:'mobile-balanced', dprCap:1.35, targetFps:45, oceanSegments:96, starCount:480,
     waveCounts:{small:24,medium:8,large:3}, waveHz:30, wakeMax:180, wakeSpawnDistance:.09,
     wakeContact:1, wakeCenter:2, wakeSide:1, wakeFoam:2, boatShadowSteps:3,
     fxMaxWidth:1280, fxMaxHeight:720, reflectionStrip:6, contactStep:6, bloom:true
   } : {
-    tier:'mobile-low', dprCap:.78, targetFps:30, oceanSegments:72, starCount:300,
+    tier:'mobile-low', dprCap:1.0, targetFps:30, oceanSegments:72, starCount:300,
     waveCounts:{small:18,medium:6,large:2}, waveHz:24, wakeMax:120, wakeSpawnDistance:.11,
     wakeContact:1, wakeCenter:1, wakeSide:1, wakeFoam:1, boatShadowSteps:2,
     fxMaxWidth:960, fxMaxHeight:540, reflectionStrip:8, contactStep:8, bloom:false

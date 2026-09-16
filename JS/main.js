@@ -229,6 +229,19 @@ window.COSMIC_MAIN=function CosmicFishingMain(deps){
     if (IS_MOBILE_RENDER) audioHintEl.classList.add('show'); else startBgm();
     window.addEventListener('pointerdown', unlockAudio, { once: true });
 
+    // v10.3: Ask supported mobile browsers/PWA shells to remain portrait.
+    // Normal browser tabs may reject orientation locking unless fullscreen/installed;
+    // CSS provides a landscape blocking overlay as the reliable fallback.
+    if (IS_MOBILE_RENDER) {
+      window.addEventListener('pointerdown', async () => {
+        try {
+          if (screen.orientation && typeof screen.orientation.lock === 'function') {
+            await screen.orientation.lock('portrait');
+          }
+        } catch (_) {}
+      }, { once: true, passive: true });
+    }
+
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x03050b, 0.04);
 
