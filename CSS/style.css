@@ -256,27 +256,72 @@
 #onlineToast[data-kind="warning"] { border-color: rgba(255,216,120,.32); }
 #onlineToast[data-kind="error"] { border-color: rgba(255,120,145,.38); }
 
-@media (max-width: 700px) {
-  #rankingPanel {
-    left: 8px;
-    top: 56px;
-    width: min(270px, calc(100vw - 16px));
-    max-height: 42vh;
-    padding: 8px 9px 7px;
-    background: linear-gradient(180deg, rgba(6,12,25,.84), rgba(3,8,17,.78));
+/* v10.2 mobile portrait composition
+   - Gameplay stays visually dominant in the upper/center area.
+   - Ranking becomes a bottom dock instead of covering the ship.
+   - A clear touch strip is kept below the ranking for movement input.
+*/
+@media (max-width: 700px) and (orientation: portrait) {
+  html, body { height: 100dvh; }
+
+  #compassRoot {
+    top: 12px;
+    width: min(290px, calc(100vw - 32px));
   }
+
+  #audioHint { display: none; }
+
+  #rankingPanel {
+    left: 10px;
+    right: 10px;
+    top: auto;
+    bottom: calc(56px + env(safe-area-inset-bottom));
+    width: auto;
+    max-height: 29dvh;
+    padding: 8px 9px 7px;
+    background: linear-gradient(180deg, rgba(6,12,25,.88), rgba(3,8,17,.84));
+    box-shadow: 0 8px 30px rgba(0,0,0,.34), inset 0 0 28px rgba(80,120,190,.025);
+  }
+
   .online-panel-header { font-size: 10px; }
   #dbStatus { min-width: 44px; font-size: 6px; }
-  .ranking-subtitle { font-size: 7px; }
+  .ranking-subtitle { margin: 4px 0 5px; font-size: 7px; }
+
   .ranking-row {
     grid-template-columns: 22px 1fr auto;
     gap: 6px;
-    min-height: 35px;
-    padding: 4px 3px;
+    min-height: 30px;
+    padding: 3px 3px;
   }
   .ranking-place { font-size: 9px; }
   .ranking-nickname { font-size: 8px; }
-  .ranking-meta { font-size: 6px; }
+  .ranking-meta { margin-top: 2px; font-size: 6px; }
   .ranking-size { font-size: 10px; }
-  #catchResultCard { top: 14%; }
+
+  #catchResultCard {
+    top: 12%;
+    width: min(340px, calc(100vw - 28px));
+  }
+
+  #onlineToast {
+    bottom: calc(62px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Landscape phones keep the compact side ranking so the playfield remains wide. */
+@media (max-height: 520px) and (orientation: landscape) {
+  #rankingPanel {
+    left: 8px;
+    top: 8px;
+    bottom: auto;
+    width: min(250px, 34vw);
+    max-height: calc(100dvh - 16px);
+    padding: 7px 8px 6px;
+  }
+  .online-panel-header { font-size: 9px; }
+  .ranking-subtitle { font-size: 6px; margin: 4px 0; }
+  .ranking-row { min-height: 28px; padding: 3px 2px; }
+  .ranking-nickname { font-size: 7px; }
+  .ranking-meta { font-size: 6px; }
+  .ranking-size { font-size: 9px; }
 }

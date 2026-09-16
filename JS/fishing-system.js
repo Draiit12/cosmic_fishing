@@ -452,7 +452,12 @@
       this.uiCanvas.style.width=`${234*scale}px`;
       this.uiCanvas.style.height=`${55*scale}px`;
       this.uiCanvas.style.left='50%';
-      this.uiCanvas.style.bottom=`${Math.max(18,Math.round(vh*.075))}px`;
+      const mobilePortrait=vw<=700&&vh>vw;
+      // v10.2: on portrait phones reserve the bottom dock for the always-on ranking.
+      // The minigame sits immediately above it instead of competing for the same screen space.
+      this.uiCanvas.style.bottom=mobilePortrait
+        ? 'calc(29dvh + 74px + env(safe-area-inset-bottom))'
+        : `${Math.max(18,Math.round(vh*.075))}px`;
       this.uiCanvas.style.transform='translateX(-50%)';
     }
 

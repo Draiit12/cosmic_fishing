@@ -2834,6 +2834,9 @@ TRACE: ${fishingTrace.slice(-5).map(v=>v.event).join(' > ')}`;
       cameraNormalPos.y+=cameraMode.moveHeightBoost*framedMf;
       cameraNormalPos.z+=cameraMode.moveBackBoost*framedMf;
       cameraNormalLook.copy(boatRoot.position).add(cameraMode.normalLookOffset);
+      // v10.2 mobile portrait composition: the ranking now occupies the lower screen,
+      // so aim slightly below the boat to place gameplay a little higher on-screen.
+      if(window.innerWidth<=700&&window.innerHeight>window.innerWidth)cameraNormalLook.y-=.78;
       if(boatMotion.velocity.lengthSq()>.0001)cameraMoveDir.copy(boatMotion.velocity).normalize();else cameraMoveDir.set(-Math.sin(boatMotion.heading),0,-Math.cos(boatMotion.heading));
       cameraNormalLook.addScaledVector(cameraMoveDir,cameraMode.moveLookAhead*framedMf);cameraNormalLook.y+=.18*framedMf;
       cameraDesiredPos.copy(cameraNormalPos);cameraDesiredLook.copy(cameraNormalLook);
