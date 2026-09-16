@@ -37,6 +37,30 @@
     </div>
     <div id="audioHint">LEFT CLICK MOVE · RIGHT CLICK CAST / HOOK · HOLD IN MINIGAME</div>
   </div>
+
+  <section id="rankingPanel" aria-label="물고기 크기 랭킹">
+    <header class="online-panel-header">
+      <div>WORLD SIZE RANKING</div>
+      <div id="dbStatus" data-state="setup">DB SETUP</div>
+    </header>
+    <div class="ranking-subtitle">LIVE · 가장 큰 물고기 TOP 20</div>
+    <div id="rankingList"></div>
+    <div id="rankingEmpty">아직 온라인 기록이 없습니다.</div>
+  </section>
+
+  <section id="catchResultCard" aria-label="낚시 결과">
+    <button id="catchResultClose" type="button" aria-label="결과 닫기">×</button>
+    <div class="catch-kicker">NEW CATCH</div>
+    <div id="catchFishName">FISH</div>
+    <div id="catchLength">0.00 cm</div>
+    <div class="catch-divider"></div>
+    <div class="catch-player-label">RANDOM ANGLER</div>
+    <div id="catchPlayer">심심한 낡은 어부</div>
+    <div id="catchRank">온라인 기록 저장 완료</div>
+  </section>
+
+  <div id="onlineToast"></div>
+
   <audio id="bgm" src="./MUSIC/background.mp3" loop preload="metadata"></audio>
   <audio id="motorSfx" src="./MUSIC/motor.mp3" loop preload="metadata"></audio>
   <audio id="rodCastSfx" src="./MUSIC/rod_cast.mp3" preload="auto"></audio>
@@ -46,6 +70,9 @@
   <audio id="fishEscapeSfx" src="./MUSIC/fish_escape_cosmic.ogg" preload="auto"></audio>
   <audio id="fishCompleteSfx" src="./MUSIC/fish_complete_cosmic.ogg" preload="auto"></audio>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./JS/supabase-config.js"></script>
+  <script src="./JS/online-ranking.js"></script>
   <script src="./JS/core/runtime-config.js"></script>
   <script src="./JS/core/asset-state.js"></script>
   <script src="./JS/core/asset-loader.js"></script>

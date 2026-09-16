@@ -1,4 +1,4 @@
-// Cosmic Fishing v9.9.14 Character Occlusion Fix runtime.
+// Cosmic Fishing v10.0.0 Online Ranking runtime.
 // Loaded as a classic script so local file:// launch does not fetch local ES modules.
 window.COSMIC_MAIN=function CosmicFishingMain(deps){
   'use strict';
@@ -2247,6 +2247,13 @@ varying float vInstanceOpacity;`)
           playFishCompleteSfx();
           pushFishingTrace('RESULT_COMPLETE');
           console.info('[CosmicFishing] Fishing minigame COMPLETE');
+          // Online ranking is intentionally isolated from the fishing state machine.
+          // A failed DB request never blocks result animation, controls, or the next cast.
+          if(window.CosmicOnline && typeof window.CosmicOnline.submitCatch==='function'){
+            Promise.resolve(window.CosmicOnline.submitCatch()).catch(err=>{
+              console.error('[CosmicFishing] online catch submission failed:',err);
+            });
+          }
         },
         onMiss:()=>{
           playFishEscapeSfx();
